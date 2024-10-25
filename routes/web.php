@@ -23,6 +23,11 @@ Route::get('/peserta', function () {
 Route::get('/event', [ItemController::class, 'showEventPage'])->name('event');
 Route::post('/items', [ItemController::class, 'store'])->name('items.store');
 
+Route::resource('items', ItemController::class);
+
+Route::get('items/{id}/edit', [ItemController::class, 'editttsss'])->name('items.edit');
+Route::put('items/{id}', [ItemController::class, 'update'])->name('items.update');
+
 Route::middleware('auth')->group(function () {
     Route::get('/profile', [ProfileController::class, 'edit'])->name('profile.edit');
     Route::patch('/profile', [ProfileController::class, 'update'])->name('profile.update');

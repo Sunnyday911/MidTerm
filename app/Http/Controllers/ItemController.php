@@ -14,12 +14,32 @@ use App\Models\Item;
 
 class ItemController extends Controller
 {
+
+
+    public function editttsss($id)
+    {
+        // Fetch the item by its ID
+        $item = Item::findOrFail($id);
+
+        // Return the edits view with the item data
+        return view('items.edits', compact('item'));
+    }
+    
     // Show the event page with items
     public function showEventPage()
     {
         $items = Item::all();
         return view('event', compact('items'));
     }
+
+    public function edit($id)
+{
+    // Fetch the item by its ID
+    $item = Item::findOrFail($id);
+
+    // Return the edit view with the item data
+    return view('items.edit', compact('item'));
+}
 
     // Store a new item
     public function store(Request $request)
