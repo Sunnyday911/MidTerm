@@ -2,6 +2,7 @@
 
 use App\Http\Controllers\ProfileController;
 use Illuminate\Support\Facades\Route;
+use App\Http\Controllers\ItemController;
 
 Route::get('/', function () {
     return view('welcome');
@@ -10,6 +11,17 @@ Route::get('/', function () {
 Route::get('/dashboard', function () {
     return view('dashboard');
 })->middleware(['auth', 'verified'])->name('dashboard');
+
+Route::get('/event', function () {
+    return view('event');
+})->middleware(['auth', 'verified'])->name('event');
+
+Route::get('/peserta', function () {
+    return view('peserta');
+})->middleware(['auth', 'verified'])->name('peserta');
+
+Route::get('/event', [ItemController::class, 'showEventPage'])->name('event');
+Route::post('/items', [ItemController::class, 'store'])->name('items.store');
 
 Route::middleware('auth')->group(function () {
     Route::get('/profile', [ProfileController::class, 'edit'])->name('profile.edit');
